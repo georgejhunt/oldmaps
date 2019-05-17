@@ -12,7 +12,7 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import MVT from 'ol/format/MVT';
 import stylefunction from 'ol-mapbox-style/stylefunction';
-import {defaults as defaultControls, ScaleLine,Attribution} from 'ol/control.js';
+import {defaults as defaultControls, ScaleLine} from 'ol/control.js';
 import GeoJSON from 'ol/format/GeoJSON';
 import {Style, Fill, Stroke, Circle, Text} from 'ol/style';
 //import WMTSCapabilities from 'ol/format/WMTSCapabilities.js';
@@ -29,8 +29,6 @@ import MapBrowserEvent from 'ol/MapBrowserEvent'
 window.$ = window.jQuery = require('jquery');
 const typeahead = require('./assets/bootstrap-typeahead.min.js');
 var scaleLineControl = new ScaleLine();
-var attribution = new Attribution({
-   label: "OpenStreetMaps.org, OpenLayers.com"});
 
 // initial values for on event variables to get through startup
 var zoom = 3;
@@ -49,8 +47,8 @@ var projectionExtent = projection.getExtent();
 var size = getWidth(projectionExtent) / 256;
    
 map = new Map({ target: 'map-container',
-  controls: defaultControls({attribution: false}).extend([
-    scaleLineControl,attribution
+  controls: defaultControls().extend([
+    scaleLineControl
   ]),
   view: new View({
     center: fromLonLat([-71.06, 42.37]),
@@ -69,6 +67,8 @@ var sat_layer =  new TileLayer({
      // -y in the followinng url changes origin form lower left to upper left
      url: './tileserver.php/satellite/{z}/{x}/{-y}.jpeg',
      wrapX: true,
+     attributions: ['&copy <a href="https://s2maps.eu">Sentinel-2 cloudless</a> by <a href="https://eox.at">EOX IT Services GmbH, </a>'
+     ]
   })
 });
    
@@ -77,6 +77,8 @@ var detail = new VectorTileLayer({
       format: new MVT(),
       url: `./tileserver.php/detail/{z}/{x}/{y}.pbf`,
       minZoom: 0,
+      attributions: ['&copy <a href="https://openstreetmap.org">OpenStreetMaps, </a> <a href="https://openmaptiles.com"> &copy OpenMapTiles</a>'
+      ],
       maxZoom: 14
    }),
    //type: 'base',

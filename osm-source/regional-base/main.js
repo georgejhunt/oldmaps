@@ -60,7 +60,8 @@ var view = map.getView();
 var sat_layer =  new TileLayer({
   opacity: 1,
   title: 'Satellite',
-  minResolution: 1000,
+  //minResolution: 1000,
+  minResolution: 16,
   //type: 'base',
   //enableOpacitySliders: true,
   source: new XYZSource({

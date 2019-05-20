@@ -13,7 +13,7 @@ if MAP_VERSION == 'v.999':
 MR_SSD = os.environ.get("MR_SSD",'/root/mapgen')
 REGION_INFO = os.path.join(MR_SSD,'../resources','regions.json')
 DOWNLOAD_URL = os.environ['MAP_DL_URL']
-GENERATED_TILES = MR_SSD + '/output/stage2.save/'
+GENERATED_TILES = MR_SSD + '/output/stage2/'
 
 outstr = ''
 region_list = []
@@ -38,7 +38,7 @@ with open(REGION_INFO,'r') as region_fp:
       #data['regions'][region]['perma_ref'] = perma_ref
       #data['regions'][region]['url'] = DOWNLOAD_URL+ '/' + identity + \
 #                                       '/' + identity + '.zip'
-      data['regions'][region]['sat_size'] = 0
+      data['regions'][region]['sat_size'] = 790798336
       identity = perma_ref + '_sat_' + data['regions'][region]['date'] +'_'\
 		 + MAP_VERSION 
       data['regions'][region]['sat_url'] = DOWNLOAD_URL+ '/' + identity + \

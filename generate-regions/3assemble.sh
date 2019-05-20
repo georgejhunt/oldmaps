@@ -31,7 +31,8 @@ pushd  $MR_SSD/output/stage3/bundle
    cp index.html main.js src
    cp -fp build/* .
 popd
-http://download.iiab.io/content/OSM/vector-tiles/maplist/hidden/regional-resources/satellite_z0-z7.mbtiles
+#http://download.iiab.io/content/OSM/vector-tiles/maplist/hidden/regional-resources/satellite_z0-z7.mbtiles
+http://download.iiab.io/content/OSM/vector-tiles/maplist/hidden/regional-resources/satellite_z0-z9.mbtiles
 wget -c  $UKIDS_BASE/satellite_z0-z7.mbtiles -P $MR_SSD/output/stage3/bundle/
 wget -c  $UKIDS_BASE/cities1000.sqlite -P $MR_SSD/output/stage3/bundle/
 

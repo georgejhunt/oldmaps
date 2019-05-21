@@ -309,7 +309,7 @@ function ok_zoom(evt){
    var coords = Object(ol_proj__WEBPACK_IMPORTED_MODULE_4__[/* toLonLat */ "j"])(evt.coordinate);
    lat = coords[1];
    lon = coords[0];
-   zoom = map.getView().getZoom() + 1;; 
+   zoom = map.getView().getZoom(); 
    var resp = $.ajax({
       type: 'GET',
       async: true,

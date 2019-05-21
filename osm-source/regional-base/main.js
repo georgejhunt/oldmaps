@@ -61,7 +61,7 @@ var sat_layer =  new TileLayer({
   opacity: 1,
   title: 'Satellite',
   //minResolution: 1000,
-  //minResolution: 16,
+  minResolution: 16,
   //type: 'base',
   //enableOpacitySliders: true,
   source: new XYZSource({
@@ -166,7 +166,7 @@ function ok_zoom(evt){
    var coords = toLonLat(evt.coordinate);
    lat = coords[1];
    lon = coords[0];
-   zoom = map.getView().getZoom(); 
+   zoom = map.getView().getZoom() + 1; 
    var resp = $.ajax({
       type: 'GET',
       async: true,

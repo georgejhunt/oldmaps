@@ -204,7 +204,7 @@ var sat_layer =  new ol_layer_Tile__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a
   opacity: 1,
   title: 'Satellite',
   //minResolution: 1000,
-  //minResolution: 16,
+  minResolution: 16,
   //type: 'base',
   //enableOpacitySliders: true,
   source: new ol_source_XYZ__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
@@ -309,7 +309,7 @@ function ok_zoom(evt){
    var coords = Object(ol_proj__WEBPACK_IMPORTED_MODULE_4__[/* toLonLat */ "j"])(evt.coordinate);
    lat = coords[1];
    lon = coords[0];
-   zoom = map.getView().getZoom(); 
+   zoom = map.getView().getZoom() + 1; 
    var resp = $.ajax({
       type: 'GET',
       async: true,

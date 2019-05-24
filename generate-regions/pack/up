@@ -2,4 +2,5 @@
 # copy the ol-parcel-bundle to apache teritory
 
 rsync -a ./build/* /library/www/html/temp
+cp map.css /library/www/html/temp
 #rsync -a ./site/* /library/www/html/ghboxes

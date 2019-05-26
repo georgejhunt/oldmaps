@@ -110,16 +110,16 @@ function get_box_coords(radius,lon,lat){
 var box_spec = get_box_coords(radius,-122.24,37.45);
 
 var satLayer = new VectorLayer({
-  style: new Style({
+   style: new Style({
       stroke: new Stroke({
         color: 'rgb(255, 140, 0, 1)'
       })
-  }), 
-  source: new VectorSource({
-     features: [new Feature({
-        geometry: new Polygon(box_spec)
-     })]
-  })
+   }), 
+   source: new VectorSource({
+      features: [new Feature({
+         geometry: new Polygon([box_spec])
+      })]      
+   })
 });
 
 

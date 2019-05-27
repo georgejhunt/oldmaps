@@ -109,17 +109,23 @@ function get_box_coords(radius,lon,lat){
 }
 var box_spec = get_box_coords(radius,-122.24,37.45);
 
+function getBoxSource(){
+   var box_spec = get_box_coords(radius,-122.24,37.45);
+   var boxFeature = new Feature({
+      geometry: new Polygon([box_spec])
+   });
+   var boxSource =  new VectorSource({
+      features: [boxFeature]      
+   });
+   return(boxSource)
+}
 var satLayer = new VectorLayer({
    style: new Style({
       stroke: new Stroke({
         color: 'rgb(255, 140, 0, 1)'
       })
    }), 
-   source: new VectorSource({
-      features: [new Feature({
-         geometry: new Polygon([box_spec])
-      })]      
-   })
+   source: getBoxSource()
 });
 
 
@@ -155,8 +161,12 @@ map.on("pointermove", function(evt) {
    //satLayer.getSource().clear();
    //update_satbox(evt);
 });
+
 $( document ).on('change','#area-choice',function(elem){
    if ( elem.target.value == 'small' )
       radius = 50000; else radius = 150000;
-})
+   satLayer.setSource(getBoxSource());
+   satLayer.changed();  
+   console.log("radius changed");
+});
 

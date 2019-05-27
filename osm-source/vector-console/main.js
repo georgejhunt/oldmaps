@@ -23,10 +23,12 @@ var mapData = "/admin/map";
 var zoom = 3;
 var lat = 37;
 var lon = -122;
-var radius = 150000;
+var radius = 50000;
 var boxcoords = [[[0,0],[0,1],[1,1],[1,0],[0,0]]];
 var ptrcoords = [0,0];
 
+// load the regions checkbox
+initMap();
 
 var detail = new VectorTileLayer({
    source: new VectorTileSource({
@@ -40,7 +42,8 @@ var detail = new VectorTileLayer({
    declutter: true,
 });
 
-fetch(mapData + '/style-osm.json').then(function(response) {
+//fetch(mapData + '/style-osm.json').then(function(response) {
+fetch('./style-osm.json').then(function(response) {
    response.json().then(function(glStyle) {
      stylefunction(detail, glStyle,"openmaptiles");
    });
@@ -110,7 +113,7 @@ function get_box_coords(radius,lon,lat){
 var box_spec = get_box_coords(radius,-122.24,37.45);
 
 function getBoxSource(){
-   var box_spec = get_box_coords(radius,-122.24,37.45);
+   var box_spec = get_box_coords(radius,lon,lat);
    var boxFeature = new Feature({
       geometry: new Polygon([box_spec])
    });
@@ -119,10 +122,20 @@ function getBoxSource(){
    });
    return(boxSource)
 }
+
 var satLayer = new VectorLayer({
    style: new Style({
       stroke: new Stroke({
         color: 'rgb(255, 140, 0, 1)'
+      })
+   }), 
+   source: getBoxSource()
+});
+
+var pointerLayer = new VectorLayer({
+   style: new Style({
+      stroke: new Stroke({
+        color: 'rgb(115, 77, 38)'
       })
    }), 
    source: getBoxSource()
@@ -144,7 +157,7 @@ $( document ).on("mouseout",".extract",function(){
 
 
 var map = new Map({ target: 'map-container',
-  layers: [detail,boxLayer,satLayer],
+  layers: [detail,boxLayer,satLayer,pointerLayer],
   //layers: [satLayer],
   view: new View({
     center: fromLonLat([-122.24,37.45]),
@@ -160,13 +173,47 @@ map.on("pointermove", function(evt) {
    lon = ptrcoords[0];
    //satLayer.getSource().clear();
    //update_satbox(evt);
+   pointerLayer.setSource(getBoxSource());
+   pointerLayer.changed();  
 });
 
 $( document ).on('change','#area-choice',function(elem){
    if ( elem.target.value == 'small' )
-      radius = 50000; else radius = 150000;
+      radius = 50000; 
+   else if (elem.target.value == 'medium')
+      radius = 150000
+   else if (elem.target.value == 'large')
+      radius = 500000;;
    satLayer.setSource(getBoxSource());
    satLayer.changed();  
    console.log("radius changed");
+});
+
+map.on("click", function(evt) {
+   var coords = toLonLat(evt.coordinate);
+   lat = coords[1];
+   lon = coords[0];
+   satLayer.setSource(getBoxSource());
+   satLayer.changed();  
+   console.log("center changed to lon:" + lon.toFixed(2) + '  lat:' + lat.toFixed(2));
+});
+
+var resp = $.ajax({
+   type: 'GET',
+   async: true,
+   url: '/common/assets/vector-map-idx.json',
+   dataType: 'json'
+})
+.done(function( data ) {
+   var sel = document.getElementById('installed_maps');
+   for (var key in data) {
+    if (data.hasOwnProperty(key)) {           
+      console.log(key, data[key],data[key]['region']);
+      var opt = document.createElement('option');
+      opt.appendChild( document.createTextNode( data[key]['region'] ));
+      opt.value = key; 
+      sel.appendChild(opt); 
+    }
+  }
 });
 

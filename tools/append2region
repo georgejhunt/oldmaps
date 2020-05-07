@@ -41,16 +41,16 @@ append_data(){
 # is the output filename full path?
 LEADER=${DEST:0:1}
 if [ "$LEADER" != "/" ];then
-   mkdir -p output
-   DEST=$SOURCEDIR/output/$DEST
+   mkdir -p build
+   DEST=$SOURCEDIR/build/$DEST
 fi
 
 # If the destination exists
 # test the output database. Does it have the required UNIQUE spec?
-if [ -f "$DEST" ];then
-   cat << EOF | sqlite3 combined_regions.sqlite | grep CREATE | grep UNIQUE
+#if [ -f "$DEST" ];then
+if [ 1 -eq 0 ];then
+   cat << EOF | sqlite3 $DEST | grep map_index | grep UNIQUE
    .schema
-   .q
 EOF
    if [ $? -ne 0 ]; then
       echo "this tool will not function properly appending to this database"
@@ -61,8 +61,8 @@ EOF
    fi
 fi
 
-if [ "$DEST" == "$SOURCEDIR/output/." ]; then
-   DEST=$SOURCEDIR/output/combined_regions.sqlite
+if [ "$DEST" == "$SOURCEDIR/build/." ]; then
+   DEST=$SOURCEDIR/build/combined_regions.sqlite
 fi
    
 # does the target mbtile already exist? Create if not

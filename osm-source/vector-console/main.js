@@ -26,6 +26,7 @@ var lon = -122;
 var radius = 50000;
 var boxcoords = [[[0,0],[0,1],[1,1],[1,0],[0,0]]];
 var ptrcoords = [0,0];
+var cmdline = '';
 
 // load the regions checkbox
 initMap();
@@ -186,6 +187,7 @@ $( document ).on('change','#area-choice',function(elem){
       radius = 500000;;
    satLayer.setSource(getBoxSource());
    satLayer.changed();  
+   document.getElementById('cmdline_element').innerHTML = "extend_sat.py --lon " + lon.toFixed(4) + ' --lat ' + lat.toFixed(4) + ' --radius ' + radius;
    console.log("radius changed");
 });
 
@@ -196,24 +198,12 @@ map.on("click", function(evt) {
    satLayer.setSource(getBoxSource());
    satLayer.changed();  
    console.log("center changed to lon:" + lon.toFixed(2) + '  lat:' + lat.toFixed(2));
-});
+   document.getElementById('cmdline_element').innerHTML = "extend_sat.py --lon " + lon.toFixed(4) + ' --lat ' + lat.toFixed(4) + ' --radius ' + radius;
 
-var resp = $.ajax({
-   type: 'GET',
-   async: true,
-   url: '/common/assets/vector-map-idx.json',
-   dataType: 'json'
-})
-.done(function( data ) {
-   var sel = document.getElementById('installed_maps');
-   for (var key in data) {
-    if (data.hasOwnProperty(key)) {           
-      console.log(key, data[key],data[key]['region']);
-      var opt = document.createElement('option');
-      opt.appendChild( document.createTextNode( data[key]['region'] ));
-      opt.value = key; 
-      sel.appendChild(opt); 
-    }
-  }
 });
-
+var cmdline_element = {};
+$( document ).ready(function() {
+    console.log( "ready!" );
+    document.getElementById('cmdline_element').innerHTML = "extend_sat.py";
+    document.getElementById('instr').innerHTML = "<br><br>Copy the above instructions, become root, and paste them into a terminal window.";
+});

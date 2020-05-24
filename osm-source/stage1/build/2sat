@@ -1,0 +1,3 @@
+#!/bin/bash -x
+cp main* /library/www/osm-vector-maps/satellite/
+cp index.html /library/www/osm-vector-maps/satellite/

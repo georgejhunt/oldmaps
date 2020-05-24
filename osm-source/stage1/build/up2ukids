@@ -1,0 +1,2 @@
+#!/bin/bash -x
+scp /opt/iiab/maps/generate-regions/pack/build/main.js ghunt@unleashkids.org:/var/www/d.iiab.io/content/OSM/vector-tiles/satellite/

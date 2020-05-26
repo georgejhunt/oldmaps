@@ -16,12 +16,13 @@
     "bootstrap-typeahead": "^2.3.2",
     "jquery": "^3.3.1",
     "ol": "^5.3.1",
+    "ol-contextmenu": "^4.0.1",
     "ol-mapbox-style": "^4.2.1",
     "popper.js": "^1.14.7"
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
-    "parcel": "^1.12.3",
+    "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.2"
   }
 }

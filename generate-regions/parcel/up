@@ -1,0 +1,6 @@
+#!/bin/bash -x
+# copy the ol-parcel-bundle to apache teritory
+
+mkdir -p /library/www/osm-vector-maps/viwer/lib.js
+rsync -a ./lib.js/* /library/www/osm-vector-maps/viewer/lib.js/
+#rsync -a ./site/* /library/www/html/ghboxes

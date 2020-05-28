@@ -1,6 +1,6 @@
 // right stage1 branch -- working towards a minumum testable addition to master
 //////////////////s1 Imports ///////////////////////////////////////////////////
-var ContextMenu = require('./assets/ol-contextmenu.js');
+var ContextMenu = require('../assets/ol-contextmenu.js');
 //var ol = require('ol');
 // temp.js for base -- regional OSM vector tiles
 import 'ol/ol.css';
@@ -29,7 +29,7 @@ import {format} from 'ol/coordinate';
 //import WMTSTileGrid from 'ol/tilegrid/WMTS.js';
 import {get as getProjection} from 'ol/proj.js';
 import {getWidth, getTopLeft} from 'ol/extent.js';
-import LayerSwitcher from './assets/ol5-layerswitcher.js';
+import LayerSwitcher from '../assets/ol5-layerswitcher.js';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import MapBrowserEvent from 'ol/MapBrowserEvent'
@@ -38,7 +38,7 @@ import DragAndDrop from 'ol/interaction/DragAndDrop';
 
 //////////////////s2  GLOBALS /////////////////////////////
 window.$ = window.jQuery = require('jquery');
-const typeahead = require('./assets/bootstrap-typeahead.min.js');
+const typeahead = require('../assets/bootstrap-typeahead.min.js');
 var scaleLineControl = new ScaleLine();
 var attribution = new Attribution({
    label: "OpenStreetMaps.org, OpenLayers.com"});

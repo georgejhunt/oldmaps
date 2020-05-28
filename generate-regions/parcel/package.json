@@ -1,29 +1,26 @@
 {
-  "name": "ol_parcel-bundler",
+  "name": "ghunt",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "devel": "NODE_ENV=test parcel build --public-url .  --out-dir lib.js index.html",
+    "devel": "NODE_ENV=development parcel build --no-minify --public-url .  --out-dir lib.js index.html",
     "build": "parcel build --public-url . --out-dir lib.js index.html"
   },
   "keywords": [],
-  "author": "George Hunt",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.5.0",
     "bootstrap-typeahead": "^2.3.2",
-    "jquery": "^3.3.1",
-    "ol": "^5.3.1",
+    "jquery": "^3.5.1",
+    "ol": "^6.3.1",
     "ol-contextmenu": "^4.0.1",
-    "ol-mapbox-style": "^4.2.1",
-    "popper.js": "^1.14.7"
-  },
-  "devDependencies": {
-    "cssnano": "^4.1.10",
+    "ol-mapbox-style": "^6.1.1",
     "parcel": "^1.12.4",
-    "parcel-bundler": "^1.12.2"
+    "popper": "^1.0.1",
+    "popper.js": "^1.16.1"
   }
 }

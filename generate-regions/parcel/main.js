@@ -15,7 +15,9 @@ import VectorTileSource from 'ol/source/VectorTile';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import MVT from 'ol/format/MVT';
-import stylefunction from 'ol-mapbox-style/stylefunction';
+import stylefunction from 'ol-mapbox-style/dist/stylefunction';
+//import olms from 'ol-mapbox-style';
+//var stylefunction = olms.stylefunction
 import {defaults as defaultControls, ScaleLine,Attribution} from 'ol/control.js';
 import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format';
 import {Style, Fill, Stroke, Circle, Icon, Text} from 'ol/style';
@@ -149,15 +151,18 @@ for(var mbt in tiledata){
 }
 
 function set_detail_style(the_style){
+   console.log('fetch: '+the_style);
    fetch(the_style).then(function(response) {
       response.json().then(function(glStyle) {
          for(var mbt in layerDict){
+           console.log('mbtiles name: ' + mbt);
+           if (mbt.substr(0,3) == 'sat') continue;
            stylefunction(layerDict[mbt], glStyle,"openmaptiles");
          };
       });
    });
 }
-//set_detail_style(osm_style);
+set_detail_style(osm_style);
 
 ///////  Drop new layer onto map  //////////////
 const dropSource = new VectorSource();

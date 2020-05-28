@@ -109,7 +109,7 @@ for(var mbt in tiledata){
           source: new XYZSource({
            cacheSize: 0,
            // -y in the followinng url changes origin form lower left to upper left
-           url: '../tileserver.php?./tiles/' + mbt + '/{z}/{x}/{-y}.jpeg',
+           url: '../tileserver.php?../tiles/' + mbt + '/{z}/{x}/{-y}.jpeg',
            wrapX: true
         })
       });
@@ -119,7 +119,7 @@ for(var mbt in tiledata){
 var layerDict = {};   
 for(var mbt in tiledata){
    if (mbt.substr(0,3) != 'sat'){
-      var url = '../tileserver.php?./tiles/' +  mbt + '/{z}/{x}/{y}.pbf';
+      var url = '../tileserver.php?../tiles/' +  mbt + '/{z}/{x}/{y}.pbf';
       console.log('URL:' + url);
       const maxzoom = tiledata[mbt]['maxzoom'];
       if (maxzoom <11) {
@@ -157,7 +157,7 @@ function set_detail_style(the_style){
       });
    });
 }
-set_detail_style(osm_style);
+//set_detail_style(osm_style);
 
 ///////  Drop new layer onto map  //////////////
 const dropSource = new VectorSource();
@@ -181,7 +181,7 @@ for(var mbt in tiledata){
 const boxLayer =  new VectorLayer({
    source: new VectorSource({
      format: new GeoJSON(),
-     url: './assets/bboxes.geojson'
+     url: '../assets/bboxes.geojson'
    }),
    style: function(feature) {
      var name = feature.get("name");
@@ -259,7 +259,7 @@ sat_layer.on('change:visible', function(evt) {
 var resp = $.ajax({
    type: 'GET',
    async: true,
-   url: './init.json',
+   url: '../init.json',
    dataType: 'json'
 })
 .done(function( data ) {

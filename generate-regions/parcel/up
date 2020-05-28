@@ -3,4 +3,6 @@
 
 mkdir -p /library/www/osm-vector-maps/viwer/lib.js
 rsync -a ./lib.js/* /library/www/osm-vector-maps/viewer/lib.js/
+cp -p index.html /library/www/osm-vector-maps/viewer/
+cp -p main.js /library/www/osm-vector-maps/viewer/
 #rsync -a ./site/* /library/www/html/ghboxes

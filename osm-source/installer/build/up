@@ -1,0 +1,6 @@
+#!/bin/bash -x
+# copy the installer to where nginx can pick it up
+
+rsync /opt/iiab/maps/osm-source/installer/build/* /library/www/osm-vector-maps/installer/
+
+rsync /opt/iiab/maps/osm-source/installer/map_functions.js /library/www/osm-vector-maps/installer/

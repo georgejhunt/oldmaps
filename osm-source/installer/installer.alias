@@ -3,5 +3,5 @@
 
 echo Current alias is for: installer > current_alias
 alias put='/bin/cp -f ./main.js ../../osm-source/installer/main.js;/bin/cp -f ./index.html ../../osm-source/installer/index.html;/bin/cp -f ./build/* ../../osm-source/installer/build/'
-alias get='/bin/cp -f ../../osm-source/installer/index.html ./index.html;/bin/cp -f ../../osm-source/installer/main.js ./main.js; /bin/cp -f ../../osm-source/installer/map_functions.js ./map_functions.js'
+alias get='/bin/cp -f ../../osm-source/installer/index.html ./index.html;/bin/cp -f ../../osm-source/installer/main.js ./main.js; /bin/cp -f ../../osm-source/installer/map_functions.js ./map_functions.js;/bin/cp ../../osm-source/installer/map.css .'
 alias dif='vimdiff ../../osm-source/installer/main.js ./main.js'

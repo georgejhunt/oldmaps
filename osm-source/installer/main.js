@@ -17,7 +17,7 @@ import Polygon from 'ol/geom/Polygon';
 
 
 // a global variable to control which features are shown
-window.$ = window.jQuery = require('jquery');
+//window.$ = window.jQuery = require('jquery');
 var show = {};
 var mapData = "/admin/map";
 var zoom = 3;

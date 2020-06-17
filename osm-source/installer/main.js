@@ -15,6 +15,9 @@ import {add} from 'ol/coordinate';
 import Feature from 'ol/Feature';
 import Polygon from 'ol/geom/Polygon';
 
+// load the regions checkbox
+initMap();
+
 
 // a global variable to control which features are shown
 //window.$ = window.jQuery = require('jquery');
@@ -27,9 +30,6 @@ var radius = 50;
 var boxcoords = [[[0,0],[0,1],[1,1],[1,0],[0,0]]];
 var ptrcoords = [0,0];
 var cmdline = '';
-
-// load the regions checkbox
-initMap();
 
 var detail = new VectorTileLayer({
    source: new VectorTileSource({
@@ -138,6 +138,9 @@ function getBoxSource(){
    return(boxSource)
 }
 
+// load the regions checkbox
+initMap();
+
 var satLayer = new VectorLayer({
    style: new Style({
       stroke: new Stroke({
@@ -219,5 +222,6 @@ var cmdline_element = {};
 $( document ).ready(function() {
     console.log( "ready!" );
     document.getElementById('cmdline_element').innerHTML = "extend_sat.py";
-    document.getElementById('instr').innerHTML = "<br><br>Copy the above instructions, become root, and paste them into a terminal window.";
+    document.getElementById('instr').innerHTML = "First Install at least one of the regions on the left of this window.<br>Then to increase satellite detailed coverage, copy the instructions below, become root, and paste them into a terminal window.";
 });
+

@@ -129,6 +129,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// load the regions checkbox
+initMap();
+
 
 // a global variable to control which features are shown
 //window.$ = window.jQuery = require('jquery');
@@ -141,9 +144,6 @@ var radius = 50;
 var boxcoords = [[[0,0],[0,1],[1,1],[1,0],[0,0]]];
 var ptrcoords = [0,0];
 var cmdline = '';
-
-// load the regions checkbox
-initMap();
 
 var detail = new ol_layer_VectorTile__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]({
    source: new ol_source_VectorTile__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]({
@@ -252,6 +252,9 @@ function getBoxSource(){
    return(boxSource)
 }
 
+// load the regions checkbox
+initMap();
+
 var satLayer = new ol_layer_Vector__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({
    style: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Style */ "c"]({
       stroke: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Stroke */ "b"]({
@@ -333,8 +336,9 @@ var cmdline_element = {};
 $( document ).ready(function() {
     console.log( "ready!" );
     document.getElementById('cmdline_element').innerHTML = "extend_sat.py";
-    document.getElementById('instr').innerHTML = "<br><br>Copy the above instructions, become root, and paste them into a terminal window.";
+    document.getElementById('instr').innerHTML = "First Install at least one of the regions on the left of this window.<br>Then to increase satellite detailed coverage, copy the instructions below, become root, and paste them into a terminal window.";
 });
+
 
 
 /***/ }),

@@ -105,15 +105,16 @@ function genMapItem(region,checkbox) {
   var ksize = region.size / 1000;
   // is this region already insalled?
   if (map_is_installed(region.detail_url)) colorClass = 'installed';
-  html += '<div class="extract" data-region={"name":"' + region.region + '"}> ';
+  html += '<div class="extract" data-region={"name":"' + basename(region.detail_url) + '"} ';
+  html += ' data-mapid="' + basename(region.detail_url) + '" ';
+      html += ' onChange="updateCmdline(this)" >';
   html += '<label>';
   if ( checkbox ) {
     if (selectedMapItems.indexOf(region.name) != -1)
       checked = 'checked';
     else
       checked = '';
-      html += '<input type="checkbox" name="' + region.detail_url + '"';
-      html += ' onChange="updateMapSpace(this)" ' + checked + '> ';
+      html += '<input type="radio" name="region">';
       html += '</input>';;
   }
   html += '</label>'; // end input
@@ -141,6 +142,7 @@ function genMapTooltip(map) {
   var re = /^.*_(v[0-9]+\.[0-9]+)\.zip/;
   var url = map.url;
   var installed = getInstalledVersion(map.perma_ref);
+  if ( installed == '' ) installed = 'Not installed';
   var version = url.replace(re,'$1');
   mapToolTip += 'title="';
   mapToolTip += 'Date: ' + map.date + "  Version: " + version + '<br>';
@@ -213,7 +215,7 @@ function initMap(){
    var url =  mapAssetsDir + 'map-catalog.json';
    sysStorage.map_selected_size = 0; // always set to 0
    if (UrlExists(url)){
-      $.when(getMapStat()).then(renderMapList);
+      $.when(getMapStat()).then(function(){renderMapList(true);});
    }
 }
 function UrlExists(url)
@@ -222,4 +224,9 @@ function UrlExists(url)
     http.open('HEAD', url, false);
     http.send();
     return http.status!=404;
+}
+
+function updateCmdline(elem){
+   console.log(elem.dataset.mapid);
+   cmdline = document.getElementById('cmdline').innerHTML = 'install-map-region ' + elem.dataset.mapid;
 }

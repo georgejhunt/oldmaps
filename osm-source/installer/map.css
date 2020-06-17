@@ -31,3 +31,7 @@ body {
   max-width: 500px;
   border-radius: .5em;
 }
+.command {
+   border: double;
+   background: #eee;
+}

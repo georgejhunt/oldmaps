@@ -12,41 +12,41 @@
 </head>
 <body>
 
-					<h2>Vector Maps Test Page -- Use The Admin Console to Download a Selected Region</h2>
-					<p>The IIAB vector maps are based upon OpenStreetMap Data. Each map has general geographic information that covers the <b>whole world </b>with a resolution of about 5 KM. The detailed regions provide data about items that are 5 meters apart. </p>
-					<div class="row">
-					<div class="col-sm-12"><a href="/admin"><button  id="INST-MODS" type="button" class="btn btn-lg btn-primary">Go To Admin Console</button></a></div>
-					</div>
+            <h2>Vector Maps Installer -- Cut/Paste to Terminal to Install Selected Region or Satellite Details</h2>
+            <p>The IIAB vector maps are based upon OpenStreetMap Data. Each map has general geographic information that covers the <b>whole world </b>with a resolution of about 5 KM. The detailed regions provide data about items that are 5 meters apart. </p>
 
-					<div id="osmRegionSelection" >
+            <div id="osmRegionSelection" >
+               <div id='lside'>
                   <div id='mapRegionSelectList'>placeholder to be replaced by map data</div>
-                  <div class='grower'></div>
-                  <div id='rside'>
+                  <div id='instructions'><br><br>To install a Map Region, Cut (&ltctl&gtC) and Paste (&ltctl&gtV) the following line into a terminal.<br><br></div>
+                  <h4><div id='cmdline' class="command">install-map-region</div></h4>
+               </div id='lside'>
+               <div class='grower'></div>
+               <div id='rside'>
                   <div id="map-container"></div>
-                     <div class='grower'></div>
-                     <span> <!-- Title line -->
+                  <div class='grower'></div>
+                  <span> <!-- Title line -->
                      <h3>Increase Satellite Resolution in Your Selected Area</h3>
                      <div id='area-choice'>
                      <div>
-                     <input type='radio' id='small' name='size' checked value='small'>
-                     <label>50 KM Radius ~ 2 Hrs 100MB</label>
+                        <input type='radio' id='small' name='size' checked value='small'>
+                        <label>50 KM Radius ~ 2 Hrs 100MB</label>
                      </div>
                      <div>
-                     <input type='radio' id='medium' name='size' value='medium'>
-                     <label>150 KM Radius ~ 7 Hrs 300Mb</lable>
+                        <input type='radio' id='medium' name='size' value='medium'>
+                        <label>150 KM Radius ~ 7 Hrs 300Mb</lable>
                      </div>
                      <div>
-                     <input type='radio' id='large' name='size' value='large'>
-                     <label>500 KM Radius ~ 24 Hrs 1Gb</lable>
+                        <input type='radio' id='large' name='size' value='large'>
+                        <label>500 KM Radius ~ 24 Hrs 1Gb</lable>
                      </div>
-                     </span>   
-                     <div id='cmdline_element'></div>
-                     <div id='instr'></div>
-                     <div class='grower'></div>
-                     <!--<div class="col-sm-2"><button id="DNLD-SAT" type="button" class="btn btn-lg btn-primary">Download More Satellite Data</button></div>-->
-                  </div> <!--id='rside' -->
-              </div>
-				</div> <!--  End instOsmRegion Submenu Option Pane -->
+                  </span>   
+                  <div id='instr'></div>
+                  <h4><div id='cmdline_element' class="command"></div></h4>
+                  <div class='grower'></div>
+                  <!--<div class="col-sm-2"><button id="DNLD-SAT" type="button" class="btn btn-lg btn-primary">Download More Satellite Data</button></div>-->
+               </div> <!--id='rside' -->
+				</div> <!--  End osmRegionSelection Submenu Option Pane -->
             <script>
                function readableSize(kbytes) {
                  if (kbytes == 0)

@@ -228,5 +228,5 @@ function UrlExists(url)
 
 function updateCmdline(elem){
    console.log(elem.dataset.mapid);
-   cmdline = document.getElementById('cmdline').innerHTML = 'install-map-region ' + elem.dataset.mapid;
+   cmdline = document.getElementById('cmdline').innerHTML = 'sudo install-map-region ' + elem.dataset.mapid;
 }

@@ -1,0 +1,6 @@
+#!/bin/bash -x
+# define aliases for working with stage1 source is inputs for webpack, parcel-bundler
+
+alias put='/bin/cp -f ./main.js ../../osm-source/stage1/main.js;/bin/cp -f ./index.html ../../osm-source/stage1/index.html;/bin/cp -f ./build/* ../../osm-source/stage1/build/'
+alias get='/bin/cp -f ../../osm-source/stage1/index.html ./index.html;/bin/cp -f ../../osm-source/stage1/main.js ./main.js;/bin/cp -f ../../osm-source/stage1/ol5-layerswitcher.js ./ol5-layerswitcher.js'
+alias dif='vimdiff ../../osm-source/stage1/main.js ./main.js'

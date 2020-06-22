@@ -83,7 +83,8 @@ const boxLayer =  new VectorLayer({
      format: new GeoJSON(),
      url: '../viewer/assets/bboxes.geojson'
    }),
-   style: function(feature) {
+   style: setBoxStyle
+   /*style: function(feature) {
      var name = feature.get("name");
      var found = false;
       if (name.startsWith('sat')) {
@@ -97,7 +98,7 @@ const boxLayer =  new VectorLayer({
          })
       })
      }
-   } 
+   }*/ 
 })
 
 function get_box_coords(radius,lon,lat){
@@ -162,13 +163,13 @@ var pointerLayer = new VectorLayer({
 
 $( document ).on("mouseover",".extract",function(){
 
-  var data = JSON.parse($(this).attr('data-region'));
-  show = data.name;
+  //var data = JSON.parse($(this).attr('data-region'));
+  show = $(this).attr('data-region');
   //setBoxStyle();
   boxLayer.changed();
 });
 $( document ).on("mouseout",".extract",function(){
-  var data = JSON.parse($(this).attr('data-region'));
+  //var data = JSON.parse($(this).attr('data-region'));
   show = '';
   boxLayer.changed();
 });
@@ -223,18 +224,5 @@ $( document ).ready(function() {
     console.log( "ready!" );
     document.getElementById('cmdline_element').innerHTML = "sudo extend_sat.py";
     document.getElementById('instr').innerHTML = "First Install at least one of the regions on the left of this window.<br>Then to increase satellite detailed coverage, copy the instructions below, become root, and paste them into a terminal window.";
-});
-
-$( document ).on("mouseover",".extract",function(){
-
-  var data = JSON.parse($(this).attr('data-region'));
-  show = data.name;
-  //setBoxStyle();
-  boxLayer.changed();
-});
-$( document ).on("mouseout",".extract",function(){
-  var data = JSON.parse($(this).attr('data-region'));
-  show = '';
-  boxLayer.changed();
 });
 

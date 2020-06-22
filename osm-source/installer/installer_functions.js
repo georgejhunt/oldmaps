@@ -105,7 +105,7 @@ function genMapItem(region,checkbox) {
   var ksize = region.size / 1000;
   // is this region already insalled?
   if (map_is_installed(region.detail_url)) colorClass = 'installed';
-  html += '<div class="extract" data-region={"name":"' + basename(region.detail_url) + '"} ';
+  html += '<div class="extract" data-region="' + region.region + '" ';
   html += ' data-mapid="' + basename(region.detail_url) + '" ';
       html += ' onChange="updateCmdline(this)" >';
   html += '<label>';
@@ -229,4 +229,5 @@ function UrlExists(url)
 function updateCmdline(elem){
    console.log(elem.dataset.mapid);
    cmdline = document.getElementById('cmdline').innerHTML = 'sudo install-map-region ' + elem.dataset.mapid;
+   show = elem.dataset.region['name']
 }

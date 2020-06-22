@@ -50,7 +50,7 @@ fetch('./style-osm.json').then(function(response) {
    });
 });
 
-/*
+
 var setBoxStyle = function(feature) {
   var name = feature.get("name");
   //alert(keys+'');
@@ -76,7 +76,7 @@ var setBoxStyle = function(feature) {
     })
   }
 }
-*/
+
 
 const boxLayer =  new VectorLayer({ 
    source: new VectorSource({
@@ -223,5 +223,18 @@ $( document ).ready(function() {
     console.log( "ready!" );
     document.getElementById('cmdline_element').innerHTML = "sudo extend_sat.py";
     document.getElementById('instr').innerHTML = "First Install at least one of the regions on the left of this window.<br>Then to increase satellite detailed coverage, copy the instructions below, become root, and paste them into a terminal window.";
+});
+
+$( document ).on("mouseover",".extract",function(){
+
+  var data = JSON.parse($(this).attr('data-region'));
+  show = data.name;
+  //setBoxStyle();
+  boxLayer.changed();
+});
+$( document ).on("mouseout",".extract",function(){
+  var data = JSON.parse($(this).attr('data-region'));
+  show = '';
+  boxLayer.changed();
 });
 

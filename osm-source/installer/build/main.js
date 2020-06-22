@@ -164,33 +164,33 @@ fetch('./style-osm.json').then(function(response) {
    });
 });
 
-/*
+
 var setBoxStyle = function(feature) {
   var name = feature.get("name");
   //alert(keys+'');
   if (typeof show !== 'undefined' &&
        show != null && name == show) {
-    return new Style({
-      fill: new Fill({
+    return new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Style */ "c"]({
+      fill: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Fill */ "a"]({
         color: 'rgba(67, 163, 46, 0.2)'
       }),
-      stroke: new Stroke({
+      stroke: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Stroke */ "b"]({
         color: 'rgba(67, 163, 46, 1)',
         width: 2
       })
     })
   } else {
-    return new Style({
-      fill: new Fill({
+    return new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Style */ "c"]({
+      fill: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Fill */ "a"]({
         color: 'rgba(255,255,255,.10)'
       }),
-      stroke: new Stroke({
+      stroke: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Stroke */ "b"]({
         color: 'rgba(255,255,255,.3)'
       })
     })
   }
 }
-*/
+
 
 const boxLayer =  new ol_layer_Vector__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({ 
    source: new ol_source_Vector__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"]({
@@ -337,6 +337,19 @@ $( document ).ready(function() {
     console.log( "ready!" );
     document.getElementById('cmdline_element').innerHTML = "sudo extend_sat.py";
     document.getElementById('instr').innerHTML = "First Install at least one of the regions on the left of this window.<br>Then to increase satellite detailed coverage, copy the instructions below, become root, and paste them into a terminal window.";
+});
+
+$( document ).on("mouseover",".extract",function(){
+
+  var data = JSON.parse($(this).attr('data-region'));
+  show = data.name;
+  //setBoxStyle();
+  boxLayer.changed();
+});
+$( document ).on("mouseout",".extract",function(){
+  var data = JSON.parse($(this).attr('data-region'));
+  show = '';
+  boxLayer.changed();
 });
 
 

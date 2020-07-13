@@ -6,6 +6,7 @@
 
 ## Revision history
 
+* July 8, 2020 -- replace satellite.mbtiles in san_jose with _v0.3
 * April 16, 2020 -- shorten title from "Spanish-speaking Regions" to "Spanish Speakers"
 * Jan 27, 2020 -- Put san_jose back in with title: "World to Zoom 1"
 * Dec 2019  added Spanish-speaking Regions

@@ -3,12 +3,14 @@
 
 var mapList = [];
 var mapAssetsDir = '/osm-vector-maps/maplist/assets/';
+var consoleJsonDir = '/common/assets/'
+var selectedMapItems = [];
 
 function instMapError(data, cmd_args) {
-    consoleLog(cmd_args);
+    console.log(cmd_args);
     //cmdargs = JSON.parse(command);
     //consoleLog(cmdargs);
-    consoleLog(cmd_args["map_id"]);
+    console.log(cmd_args["map_id"]);
     mapDownloading.pop(cmd_args["map_id"]);
     return true;
 }
@@ -29,20 +31,24 @@ function readMapIdx(){
     dataType: 'json'
   })
   .done(function( data ) {
-   consoleLog (data);
+   console.log(data);
    map_idx = data;
    mapInstalled = [];
    for (var map in data) {
-   	 consoleLog (map)
+   	 console.log (map)
      if (data[map]) {
        mapInstalled.push(data[map]);
      }
   };
-  consoleLog(mapInstalled + '');
+  console.log(mapInstalled + '');
   })
   .fail(jsonErrhandler);
 
   return resp;
+}
+
+function jsonErrhandler(){
+   console.log('Json error');
 }
 
 function readMapCatalog(){
@@ -213,7 +219,7 @@ function renderMap(){
 }
 function initMap(){
    var url =  mapAssetsDir + 'map-catalog.json';
-   sysStorage.map_selected_size = 0; // always set to 0
+   //sysStorage.map_selected_size = 0; // always set to 0
    if (UrlExists(url)){
       $.when(getMapStat()).then(function(){renderMapList(true);});
    }

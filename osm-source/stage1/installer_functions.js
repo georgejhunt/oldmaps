@@ -3,14 +3,23 @@
 
 var mapList = [];
 var mapAssetsDir = '/osm-vector-maps/maplist/assets/';
+var consoleJsonDir = '/common/assets/'
+var selectedMapItems = [];
 
 function instMapError(data, cmd_args) {
-    consoleLog(cmd_args);
+    console.log(cmd_args);
     //cmdargs = JSON.parse(command);
     //consoleLog(cmdargs);
-    consoleLog(cmd_args["map_id"]);
+    console.log(cmd_args["map_id"]);
     mapDownloading.pop(cmd_args["map_id"]);
     return true;
+}
+
+function activateTooltip() {
+    $('[data-toggle="tooltip"]').tooltip({
+      animation: true,
+      delay: {show: 500, hide: 100}
+    });
 }
 
 function getMapStat(){
@@ -29,20 +38,24 @@ function readMapIdx(){
     dataType: 'json'
   })
   .done(function( data ) {
-   consoleLog (data);
+   //console.log(data);
    map_idx = data;
    mapInstalled = [];
    for (var map in data) {
-   	 consoleLog (map)
+   	 //console.log (map)
      if (data[map]) {
        mapInstalled.push(data[map]);
      }
   };
-  consoleLog(mapInstalled + '');
+  //console.log(mapInstalled + '');
   })
   .fail(jsonErrhandler);
 
   return resp;
+}
+
+function jsonErrhandler(){
+   console.log('Json error');
 }
 
 function readMapCatalog(){
@@ -149,7 +162,7 @@ function genMapTooltip(map) {
   mapToolTip += 'Available: ' + basename(map.detail_url) +'<br>';
   mapToolTip += 'Installed: '+ installed + '"';
   //mapToolTip += 'title="<em><b>' + zim.description + '</b><BR>some more text that is rather long"';
-  console.log(mapToolTip);
+  //console.log(mapToolTip);
   return mapToolTip;
 }
 
@@ -174,7 +187,7 @@ function instMapItem(map_url) {
   mapDownloading.push(map_url);
   if ( mapWip.indexOf(map_url) == -1 )
      mapWip.push(map_url);
-  console.log('mapWip: ' + mapWip);
+  //console.log('mapWip: ' + mapWip);
   return true;
 }
 
@@ -213,7 +226,7 @@ function renderMap(){
 }
 function initMap(){
    var url =  mapAssetsDir + 'map-catalog.json';
-   sysStorage.map_selected_size = 0; // always set to 0
+   //sysStorage.map_selected_size = 0; // always set to 0
    if (UrlExists(url)){
       $.when(getMapStat()).then(function(){renderMapList(true);});
    }
@@ -227,7 +240,7 @@ function UrlExists(url)
 }
 
 function updateCmdline(elem){
-   console.log(elem.dataset.mapid);
+   //console.log(elem.dataset.mapid);
    cmdline = document.getElementById('cmdline').innerHTML = 'sudo iiab-install-map-region ' + elem.dataset.mapid;
    show = elem.dataset.region['name']
 }

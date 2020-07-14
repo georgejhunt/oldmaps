@@ -37,8 +37,8 @@ var detail = new VectorTileLayer({
       url: `./tileserver.php?./detail/{z}/{x}/{y}.pbf`,
       minZoom: 0,
       attributions: ['&copy <a href="https://openstreetmap.org">OpenStreetMaps, </a> <a href="https://openmaptiles.com"> &copy OpenMapTiles</a>'
-      ],
-      maxZoom: 14
+      ]
+      //maxZoom: 14
    }),
    declutter: true,
 });
@@ -50,7 +50,7 @@ fetch('./style-osm.json').then(function(response) {
    });
 });
 
-/*
+
 var setBoxStyle = function(feature) {
   var name = feature.get("name");
   //alert(keys+'');
@@ -76,14 +76,15 @@ var setBoxStyle = function(feature) {
     })
   }
 }
-*/
 
 const boxLayer =  new VectorLayer({ 
    source: new VectorSource({
      format: new GeoJSON(),
      url: '../viewer/assets/bboxes.geojson'
    }),
-   style: function(feature) {
+   style: setBoxStyle
+/*
+function(feature) {
      var name = feature.get("name");
      var found = false;
       if (name.startsWith('sat')) {
@@ -98,6 +99,7 @@ const boxLayer =  new VectorLayer({
       })
      }
    } 
+*/
 })
 
 function get_box_coords(radius,lon,lat){
@@ -162,13 +164,13 @@ var pointerLayer = new VectorLayer({
 
 $( document ).on("mouseover",".extract",function(){
 
-  var data = JSON.parse($(this).attr('data-region'));
-  show = data.name;
+  //var data = JSON.parse($(this).attr('data-region'));
+  show = this.dataset.region;
   //setBoxStyle();
   boxLayer.changed();
 });
-$( document ).on("mouseout",".extract",function(){
-  var data = JSON.parse($(this).attr('data-region'));
+$( document ).on("mouseout",".extract",function(evt){
+  //var data = JSON.parse($(this).attr('data-region'));
   show = '';
   boxLayer.changed();
 });

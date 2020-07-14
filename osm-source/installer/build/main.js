@@ -151,8 +151,8 @@ var detail = new ol_layer_VectorTile__WEBPACK_IMPORTED_MODULE_4__[/* default */ 
       url: `./tileserver.php?./detail/{z}/{x}/{y}.pbf`,
       minZoom: 0,
       attributions: ['&copy <a href="https://openstreetmap.org">OpenStreetMaps, </a> <a href="https://openmaptiles.com"> &copy OpenMapTiles</a>'
-      ],
-      maxZoom: 14
+      ]
+      //maxZoom: 14
    }),
    declutter: true,
 });
@@ -164,54 +164,56 @@ fetch('./style-osm.json').then(function(response) {
    });
 });
 
-/*
+
 var setBoxStyle = function(feature) {
   var name = feature.get("name");
   //alert(keys+'');
   if (typeof show !== 'undefined' &&
        show != null && name == show) {
-    return new Style({
-      fill: new Fill({
+    return new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Style */ "c"]({
+      fill: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Fill */ "a"]({
         color: 'rgba(67, 163, 46, 0.2)'
       }),
-      stroke: new Stroke({
+      stroke: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Stroke */ "b"]({
         color: 'rgba(67, 163, 46, 1)',
         width: 2
       })
     })
   } else {
-    return new Style({
-      fill: new Fill({
+    return new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Style */ "c"]({
+      fill: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Fill */ "a"]({
         color: 'rgba(255,255,255,.10)'
       }),
-      stroke: new Stroke({
+      stroke: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Stroke */ "b"]({
         color: 'rgba(255,255,255,.3)'
       })
     })
   }
 }
-*/
 
 const boxLayer =  new ol_layer_Vector__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]({ 
    source: new ol_source_Vector__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"]({
      format: new ol_format_GeoJSON__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"](),
      url: '../viewer/assets/bboxes.geojson'
    }),
-   style: function(feature) {
+   style: setBoxStyle
+/*
+function(feature) {
      var name = feature.get("name");
      var found = false;
       if (name.startsWith('sat')) {
-       return new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Style */ "c"]({
-         fill: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Fill */ "a"]({
+       return new Style({
+         fill: new Fill({
            color: 'rgba(67, 163, 46, 0)'
          }),
-         stroke: new ol_style__WEBPACK_IMPORTED_MODULE_0__[/* Stroke */ "b"]({
+         stroke: new Stroke({
            color: 'rgba(250, 200, 20, 1)',
            width: 2
          })
       })
      }
    } 
+*/
 })
 
 function get_box_coords(radius,lon,lat){
@@ -276,13 +278,13 @@ var pointerLayer = new ol_layer_Vector__WEBPACK_IMPORTED_MODULE_3__[/* default *
 
 $( document ).on("mouseover",".extract",function(){
 
-  var data = JSON.parse($(this).attr('data-region'));
-  show = data.name;
+  //var data = JSON.parse($(this).attr('data-region'));
+  show = this.dataset.region;
   //setBoxStyle();
   boxLayer.changed();
 });
-$( document ).on("mouseout",".extract",function(){
-  var data = JSON.parse($(this).attr('data-region'));
+$( document ).on("mouseout",".extract",function(evt){
+  //var data = JSON.parse($(this).attr('data-region'));
   show = '';
   boxLayer.changed();
 });
